@@ -1,4 +1,17 @@
 .game-card {
-  width: 25%;
   text-align: center;
+  box-shadow: -5px -10px 13px 0 white, 5px 10px 13px 0 rgb(0 0 0 / 15%);
+  padding: 1rem;
+  margin: 1.5%;
+  width: 25%;
+  border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .cover-image {
+    max-width: 100%;
+    height: auto;
+  }
 }

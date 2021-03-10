@@ -11,7 +11,7 @@ import './search.styles.scss';
 const SearchPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState(null);
   const onSearchSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();
@@ -20,6 +20,8 @@ const SearchPage = () => {
     setSearchResults(searchResultsResponse);
     setIsLoading(false);
   };
+
+  console.log(searchResults);
 
   return (
     <div className="search-container">
@@ -41,8 +43,12 @@ const SearchPage = () => {
       <div className="search-results">
         {isLoading && <LoadingSpinner />}
         {!isLoading &&
+          searchResults &&
           searchResults.length > 0 &&
-          searchResults.map((game) => <GameCard game={game} />)}
+          searchResults.map((game) => <GameCard key={game.name} game={game} />)}
+        {!isLoading && searchResults && searchResults.length === 0 && (
+          <p>Sorry, there were no results.</p>
+        )}
       </div>
     </div>
   );

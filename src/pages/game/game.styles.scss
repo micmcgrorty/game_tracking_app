@@ -1,0 +1,29 @@
+.game-page-container {
+  padding: 0 40px;
+
+  .game-container {
+    display: flex;
+    align-items: center;
+    box-shadow: -5px -10px 13px 0 white, 5px 10px 13px 0 rgb(0 0 0 / 15%);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 50px;
+  }
+
+  .main-image {
+    width: auto;
+    height: 450px;
+    border-radius: 5px;
+  }
+
+  .game-details {
+    margin-left: 50px;
+  }
+
+  .similar-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

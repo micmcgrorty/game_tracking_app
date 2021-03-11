@@ -1,6 +1,10 @@
 .search-container {
   padding: 0 40px;
 
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
+
   .search-form {
     box-shadow: -5px -10px 13px 0 rgba(255, 255, 255, 1),
       5px 10px 13px 0 rgba(0, 0, 0, 0.15);
@@ -11,6 +15,10 @@
     padding: 2rem;
     margin: 0 100px 50px 100px;
     text-align: center;
+
+    @media (max-width: 768px) {
+      margin: 0 0 25px 0;
+    }
   }
 
   .search-header {

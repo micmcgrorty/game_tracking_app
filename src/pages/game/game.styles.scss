@@ -1,6 +1,10 @@
 .game-page-container {
   padding: 0 40px;
 
+  @media (max-width: 768px) {
+    padding: 0 10px;
+  }
+
   .game-container {
     display: flex;
     align-items: center;
@@ -8,16 +12,28 @@
     padding: 1rem;
     border-radius: 10px;
     margin-bottom: 50px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   .main-image {
     width: auto;
     height: 450px;
     border-radius: 5px;
+
+    @media (max-width: 768px) {
+      height: 250px;
+    }
   }
 
   .game-details {
     margin-left: 50px;
+
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
   }
 
   .similar-container {

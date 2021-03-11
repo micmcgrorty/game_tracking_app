@@ -21,8 +21,6 @@ const SearchPage = () => {
     setIsLoading(false);
   };
 
-  console.log(searchResults);
-
   return (
     <div className="search-container">
       <div className="search-form">

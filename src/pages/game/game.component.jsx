@@ -27,9 +27,6 @@ const GamePage = () => {
     getGameData();
   }, [id]);
 
-  console.log(gameData);
-  console.log(relatedGames);
-
   return (
     <div className="game-page-container">
       {isLoading && <LoadingSpinner />}

@@ -13,6 +13,18 @@ const calls = {
       { gameIds }
     );
     return result.data;
+  },
+  popularGamesRequest: async () => {
+    const result = await axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/game/popular`
+    );
+    return result.data;
+  },
+  newlyReleasedGamesRequest: async () => {
+    const result = await axios.get(
+      `${process.env.REACT_APP_API_BASE_URL}/game/new-releases`
+    );
+    return result.data;
   }
 };
 

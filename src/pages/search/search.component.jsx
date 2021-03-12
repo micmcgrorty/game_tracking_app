@@ -43,7 +43,11 @@ const SearchPage = () => {
         {!isLoading &&
           searchResults &&
           searchResults.length > 0 &&
-          searchResults.map((game) => <GameCard key={game.name} game={game} />)}
+          searchResults.map((game) =>
+            game.first_release_date ? (
+              <GameCard key={game.name} game={game} />
+            ) : null
+          )}
         {!isLoading && searchResults && searchResults.length === 0 && (
           <p>Sorry, there were no results.</p>
         )}

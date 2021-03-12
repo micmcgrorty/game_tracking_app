@@ -11,6 +11,9 @@ import './game.styles.scss';
 const GamePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [gameData, setGameData] = useState(null);
+  const [gamePlatforms, setGamePlatforms] = useState(null);
+  const [dateString, setDateString] = useState(null);
+  const [isGameFuture, setIsGameFuture] = useState(null);
   const [relatedGames, setRelatedGames] = useState(null);
 
   const { id } = useParams();
@@ -26,6 +29,23 @@ const GamePage = () => {
 
     getGameData();
   }, [id]);
+
+  useEffect(() => {
+    if (!gameData) return;
+    else {
+      const gameTimestamp =
+        new Date(gameData.first_release_date * 1000).getTime() * 1000;
+      const todayTimestamp = new Date().getTime() * 1000;
+      setIsGameFuture(gameTimestamp > todayTimestamp);
+      setDateString(
+        new Date(gameData.first_release_date * 1000).toLocaleDateString('en-GB')
+      );
+      const gamePlatforms = gameData.platforms
+        ? gameData.platforms.map((platform) => platform.abbreviation)
+        : null;
+      setGamePlatforms(gamePlatforms);
+    }
+  }, [gameData]);
 
   return (
     <div className="game-page-container">
@@ -43,6 +63,14 @@ const GamePage = () => {
             <div className="game-details">
               <h1>{gameData.name}</h1>
               <p>{gameData.summary}</p>
+              <div className="game-data">
+                {dateString !== 'Invalid Date' && (
+                  <p>
+                    {isGameFuture ? 'Releasing' : 'Released'} on {dateString}
+                  </p>
+                )}
+                {gamePlatforms && <p>{gamePlatforms.join(', ')}</p>}
+              </div>
             </div>
           </div>
           <hr />

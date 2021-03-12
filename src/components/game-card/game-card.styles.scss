@@ -1,5 +1,5 @@
 .game-card {
-  text-align: center;
+  text-align: left;
   box-shadow: -5px -10px 13px 0 white, 5px 10px 13px 0 rgb(0 0 0 / 15%);
   padding: 1rem;
   margin: 1.5%;
@@ -20,5 +20,13 @@
   .cover-image {
     max-width: 100%;
     height: auto;
+  }
+
+  .game-title {
+    margin: 5px 0;
+  }
+
+  .game-data {
+    margin: 5px 0;
   }
 }

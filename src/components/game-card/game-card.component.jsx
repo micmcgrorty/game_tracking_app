@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import './game-card.styles.scss';
 
@@ -16,13 +17,11 @@ const GameCard = ({ game }) => {
 
   return (
     <a href={`/game/${game.id}`} className="game-card">
-      {game.cover && (
-        <img
-          src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.png`}
-          alt={`${game.name} Cover`}
-          className="cover-image"
-        />
-      )}
+      <img
+        src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.png`}
+        alt={`${game.name} Cover`}
+        className="cover-image"
+      />
       <h3 className="game-title">{game.name}</h3>
       {dateString !== 'Invalid Date' && (
         <p className="game-data">
@@ -32,6 +31,14 @@ const GameCard = ({ game }) => {
       {gamePlatforms && <p className="game-data">{gamePlatforms.join(', ')}</p>}
     </a>
   );
+};
+
+GameCard.propTypes = {
+  game: PropTypes.shape({
+    first_release_date: PropTypes.number,
+    name: PropTypes.string,
+    gamePlatforms: PropTypes.array
+  }).isRequired
 };
 
 export default GameCard;

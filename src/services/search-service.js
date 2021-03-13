@@ -1,11 +1,8 @@
-import axios from 'axios';
+import apiService from '../api/api-wrapper';
 
 const calls = {
   searchRequest: async (searchTerm) => {
-    const result = await axios.post(
-      `${process.env.REACT_APP_API_BASE_URL}/search`,
-      { searchTerm }
-    );
+    const result = await apiService.post('/search', { searchTerm });
     return result.data;
   }
 };

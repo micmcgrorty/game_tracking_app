@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner.component';
 import GameCard from '../../components/game-card/game-card.component';
@@ -9,6 +9,7 @@ import GameService from '../../services/game-service';
 import './game.styles.scss';
 
 const GamePage = () => {
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [gameData, setGameData] = useState(null);
   const [gamePlatforms, setGamePlatforms] = useState(null);
@@ -20,11 +21,15 @@ const GamePage = () => {
 
   useEffect(() => {
     const getGameData = async () => {
-      const response = await GameService.gameRequest(id);
-      setGameData(response);
-      const related = await GameService.gamesRequest(response.similar_games);
-      setRelatedGames(related);
-      setIsLoading(false);
+      try {
+        const response = await GameService.gameRequest(id);
+        setGameData(response);
+        const related = await GameService.gamesRequest(response.similar_games);
+        setRelatedGames(related);
+        setIsLoading(false);
+      } catch (e) {
+        setError(true);
+      }
     };
 
     getGameData();
@@ -49,6 +54,7 @@ const GamePage = () => {
 
   return (
     <div className="game-page-container">
+      {error && <Redirect to="/error" />}
       {isLoading && <LoadingSpinner />}
       {!isLoading && gameData && relatedGames && (
         <>

@@ -1,5 +1,14 @@
 import React from 'react';
 
-const ErrorPage = () => <div>Error Page</div>;
+import './404.styles.scss';
+
+const ErrorPage = () => {
+  return (
+    <div className="error-page">
+      <h1 className="error-header">Oops!</h1>
+      <p>Sorry, there's been an error.</p>
+    </div>
+  );
+};
 
 export default ErrorPage;

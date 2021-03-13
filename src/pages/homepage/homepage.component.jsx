@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner.component';
 import GameCard from '../../components/game-card/game-card.component';
@@ -8,16 +9,21 @@ import GameService from '../../services/game-service';
 import './homepage.styles.scss';
 
 const HomePage = () => {
+  const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [popularGames, setPopularGames] = useState(null);
   const [newlyReleasedGames, setNewlyReleasedGames] = useState(null);
 
   useEffect(() => {
     const getGameData = async () => {
-      const popularResponse = await GameService.popularGamesRequest();
-      setPopularGames(popularResponse);
-      const newlyReleasedResponse = await GameService.newlyReleasedGamesRequest();
-      setNewlyReleasedGames(newlyReleasedResponse);
+      try {
+        const popularResponse = await GameService.popularGamesRequest();
+        setPopularGames(popularResponse);
+        const newlyReleasedResponse = await GameService.newlyReleasedGamesRequest();
+        setNewlyReleasedGames(newlyReleasedResponse);
+      } catch (e) {
+        setError(true);
+      }
       setIsLoading(false);
     };
 
@@ -26,6 +32,7 @@ const HomePage = () => {
 
   return (
     <div className="home-page-container">
+      {error && <Redirect to="/error" />}
       {isLoading && <LoadingSpinner />}
       {!isLoading && popularGames && newlyReleasedGames && (
         <>

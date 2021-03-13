@@ -4,8 +4,8 @@ This is an app that allows users to search for games and then view information a
 
 ## Structure
 
-Home page - shows a list of popular games and a list of recently released games
-Search - allows a user to search for a game and then see a list of results
+Home page - shows a list of popular games and a list of recently released games\
+Search - allows a user to search for a game and then see a list of results\
 Game - shows information on a particular game and also a list of similar games
 
 ### Running locally

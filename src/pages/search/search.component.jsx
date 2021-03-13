@@ -44,7 +44,7 @@ const SearchPage = () => {
           searchResults &&
           searchResults.length > 0 &&
           searchResults.map((game) =>
-            game.first_release_date ? (
+            game.first_release_date && game.cover ? (
               <GameCard key={game.name} game={game} />
             ) : null
           )}

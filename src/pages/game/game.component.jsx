@@ -24,8 +24,12 @@ const GamePage = () => {
       try {
         const response = await GameService.gameRequest(id);
         setGameData(response);
-        const related = await GameService.gamesRequest(response.similar_games);
-        setRelatedGames(related);
+        if (response.similar_games) {
+          const related = await GameService.gamesRequest(
+            response.similar_games
+          );
+          setRelatedGames(related);
+        }
         setIsLoading(false);
       } catch (e) {
         setError(true);
@@ -56,7 +60,7 @@ const GamePage = () => {
     <div className="game-page-container">
       {error && <Redirect to="/error" />}
       {isLoading && <LoadingSpinner />}
-      {!isLoading && gameData && relatedGames && (
+      {!isLoading && gameData && (
         <>
           <div className="game-container">
             {gameData.cover && (
@@ -80,12 +84,16 @@ const GamePage = () => {
             </div>
           </div>
           <hr />
-          <h5>Similar Games</h5>
-          <div className="similar-container">
-            {relatedGames.map((game) => (
-              <GameCard key={game.name} game={game} />
-            ))}
-          </div>
+          {relatedGames && (
+            <>
+              <h5>Similar Games</h5>
+              <div className="similar-container">
+                {relatedGames.map((game) => (
+                  <GameCard key={game.name} game={game} />
+                ))}
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
